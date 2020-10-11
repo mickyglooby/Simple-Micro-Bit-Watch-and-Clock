@@ -1,0 +1,151 @@
+def on_pin_pressed_p0():
+    global hour
+    hour += 1
+    if hour >= 13:
+        hour = 1
+    basic.show_number(hour)
+input.on_pin_pressed(TouchPin.P0, on_pin_pressed_p0)
+
+def on_button_pressed_a():
+    basic.show_leds("""
+        # # # # #
+        # . . . #
+        # . . . #
+        # . . . #
+        # # # # #
+        """)
+    basic.show_number(hour)
+    basic.show_string(":")
+    basic.show_number(minute)
+input.on_button_pressed(Button.A, on_button_pressed_a)
+
+def on_pin_pressed_p2():
+    global minute, hour
+    minute += 10
+    if minute >= 60:
+        minute = 0
+        hour += 1
+    basic.show_number(minute)
+input.on_pin_pressed(TouchPin.P2, on_pin_pressed_p2)
+
+def on_button_pressed_b():
+    for index in range(4):
+        basic.show_leds("""
+            . . # . .
+            . . # . .
+            . . # . .
+            . . . . .
+            . . . . .
+            """)
+        basic.show_leds("""
+            . . # . #
+            . . # # .
+            . . # . .
+            . . . . .
+            . . . . .
+            """)
+        basic.show_leds("""
+            . . # . .
+            . . # . .
+            . . # # #
+            . . . . .
+            . . . . .
+            """)
+        basic.show_leds("""
+            . . # . .
+            . . # . .
+            . . # . .
+            . . . # .
+            . . . . #
+            """)
+        basic.show_leds("""
+            . . # . .
+            . . # . .
+            . . # . .
+            . . # . .
+            . . . # .
+            """)
+        basic.show_leds("""
+            . . # . .
+            . . # . .
+            . . # . .
+            . . # . .
+            . # . . .
+            """)
+        basic.show_leds("""
+            . . # . .
+            . . # . .
+            # # # . .
+            . . . . .
+            . . . . .
+            """)
+        basic.show_leds("""
+            # . # . .
+            . # # . .
+            . . # . .
+            . . . . .
+            . . . . .
+            """)
+    basic.show_leds("""
+        . . # . .
+        . . # . .
+        . . # . .
+        . . . . .
+        . . . . .
+        """)
+    basic.show_leds("""
+        . . # . .
+        . . # . .
+        . . . . .
+        . . . . .
+        . . . . .
+        """)
+    basic.show_leds("""
+        . . # . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        """)
+    basic.show_leds("""
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        """)
+input.on_button_pressed(Button.B, on_button_pressed_b)
+
+def on_pin_pressed_p1():
+    global minute, hour
+    minute += 1
+    if minute >= 60:
+        minute = 0
+        hour += 1
+    basic.show_number(minute)
+input.on_pin_pressed(TouchPin.P1, on_pin_pressed_p1)
+
+def on_gesture_shake():
+    basic.show_leds("""
+        # # # # #
+        # # # # #
+        # # # # #
+        # # # # #
+        # # # # #
+        """)
+input.on_gesture(Gesture.SHAKE, on_gesture_shake)
+
+minute = 0
+hour = 0
+led.set_brightness(255)
+con = 1
+hour = 10
+minute = 35
+for index2 in range(999999999999999):
+    if minute >= 60:
+        minute = 0
+        hour += 1
+    if hour >= 13:
+        hour = 1
+    basic.pause(60000)
+    minute += 1
